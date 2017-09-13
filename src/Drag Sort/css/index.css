@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 16px;
+    color: black;
+    background: #fff;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+ul li {
+    list-style: none;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearFixed:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+body{
+    background: url("../images/bodyBg.jpg") no-repeat center/cover;
+}
+#content{
+    width: 640px;
+    height: 400px;
+    margin: 150px auto;
+}
+#content ul li{
+    width: 200px;
+    height: 120px;
+    float: left;
+    margin: 10px 0 0 10px;
+}
+#content .item{
+    width: 200px;
+    height: 120px;;
+    cursor: pointer;
+    background: #ccc;
+}
+#content .item img{
+    width: 200px;
+    height: 120px;
+    border-radius: 5px;
+}

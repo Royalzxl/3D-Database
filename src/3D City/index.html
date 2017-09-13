@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">                     <!--兼容处理-->
+        <title>Please enter your title</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            html, body {
+                height: 100%;
+                background: #5596BC;
+                perspective: 800px;
+                overflow: hidden;
+            }
+
+            a {
+                text-decoration: none;
+                color: #666;
+            }
+
+            ul li {
+                list-style: none;
+            }
+
+            .fl {
+                float: left;
+            }
+
+            .fr {
+                float: right;
+            }
+
+            .clearFixed:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            div, b, em {
+                position: absolute;
+                transform-style: preserve-3d;
+            }
+
+            #City-3D {
+                left: 50%;
+                top: 50%;
+                /*width: 400px;
+                height: 400px;
+                margin-left: -200px;
+                margin-top: -200px;*/
+                background: #B9D2E0;
+                border: 10px solid #B9D2E0;
+                /*transform: rotateX(60deg) rotateZ(-120deg);*/
+                animation: play 50s linear infinite;
+            }
+
+            @keyframes play {
+                from {
+                    transform: rotateX(60deg) rotateZ(-120deg);
+                }
+                to {
+                    transform: rotateX(60deg) rotateZ(240deg);
+                }
+            }
+
+            #City-3D div {
+            }
+
+            #City-3D div b {
+                height: 100%;
+                background: rgba(176, 208, 223, 0.9);
+                transform-origin: 0 0;
+                transform: rotateX(90deg);
+            }
+
+            #City-3D div.a b {
+                background-image: url("images/1.png");
+            }
+
+            #City-3D div.b b {
+                background-image: url("images/5.png");
+            }
+
+            #City-3D div.c b {
+                background-image: url("images/3.png");
+            }
+
+            #City-3D div.d b {
+                background-image: url("images/4.png");
+            }
+
+            #City-3D div.e b {
+                background-image: url("images/5.png");
+            }
+
+            #City-3D div b > b {
+                background: rgba(176, 208, 223, 0.9);
+                transform-origin: 0 0;
+                transform: rotateY(90deg);
+            }
+
+            #City-3D div b > b > b {
+                background: rgba(176, 208, 223, 0.9);
+                right: 0;
+                transform-origin: 100% 0;
+                transform: rotateY(90deg);
+            }
+
+            #City-3D div b > b > b > b {
+                background-color: rgba(128, 174, 187, 0.9);
+                left: 0;
+                transform-origin: 0 0;
+                transform: rotateY(90deg);
+            }
+
+            #City-3D div b > b > b > b > b {
+                background-color: #d0e4ef;
+                bottom: 1px;
+                transform-origin: 0 100%;
+                transform: rotateX(-90deg);
+            }
+        </style>
+    </head>
+    <body>
+        <!--<div id="City-3D">
+            <div style="height: 160px">
+                <b style="width: 30px">
+                    <b style="width: 20px">
+                        <b style="width: 30px">
+                            <b style="width: 20px">
+                                <b style="width: 20px ;height: 30px"></b>
+                            </b>
+                        </b>
+                    </b>
+                </b>
+            </div>
+            <div style="height: 200px;left: 50px; top: 90px;">
+                <b style="width: 30px">
+                    <b style="width: 20px">
+                        <b style="width: 30px">
+                            <b style="width: 20px">
+                                <b style="width: 20px;height: 30px"></b>
+                            </b>
+                        </b>
+                    </b>
+                </b>
+            </div>
+            <div style="height: 50px;left: 200px;top: 150px">
+                <b style="width: 30px">
+                    <b style="width: 20px">
+                        <b style="width: 30px">
+                            <b style="width: 20px">
+                                <b style="width: 20px;height: 30px"></b>
+                            </b>
+                        </b>
+                    </b>
+                </b>
+            </div>
+        </div>-->
+
+        <!--面向对象来写-->
+        <script type="text/javascript">
+
+            //添加构造函数
+            function City3D(base) {
+                this.base = (base ? base : 1) !== 1 ? base : 1;
+                this.max = 60;
+            }
+            //往原型里面添加相应的方法
+            //城市建设
+            City3D.prototype.build = function (parent) {
+                this.buildArea(parent);
+                //城市的楼盘数量及位置
+                for (var i = 0; i < this.base; i++) {
+                    for (var j = 0; j < this.base; j++) {
+                        this.buildEstate(i * this.max, j * this.max);
+                    }
+                }
+            };
+            //生成地皮
+            City3D.prototype.buildArea = function (parent) {
+                var This = this;
+                if (!this.City) {
+                    this.City = document.createElement("div");
+                    this.City.id = "City-3D";
+                    if (This.base === 1) {
+                        this.City.onclick = function () {
+                            This.base = (Math.random() * 100 << 2) % 15 + 1;
+                            This.build(document.body);  //注意this指向
+                        };
+                    } else {
+                        this.City.onclick = function () {
+                            This.build(document.body);  //注意this指向
+                        };
+                    }
+                } else {
+                    this.City.innerHTML = "";
+                }
+                //动态改变地皮大小
+                var XY = this.base * this.max;
+                this.City.style.width = this.City.style.height = XY + "px";
+                this.City.style.marginLeft = this.City.style.marginTop = -(XY / 2) + "px";
+                parent.appendChild(this.City);
+            };
+            //楼盘生成
+            City3D.prototype.buildEstate = function (left, top) {
+                //创建楼盘
+                var estate = document.createElement("div");
+                estate.className = this.setStyle();
+                estate.style.height = this.setHeight() + "px";
+                estate.style.left = left + "px";
+                estate.style.top = top + "px";
+                this.City.appendChild(estate);
+
+                //创建楼盘的每一个Surface
+                var W1 = this.setWidth(),
+                    W2 = this.setWidth();
+                var b1 = document.createElement("b");
+                b1.style.width = W1 + "px";
+                estate.appendChild(b1);
+                var b2 = document.createElement("b");
+                b2.style.width = W2 + "px";
+                b1.appendChild(b2);
+                var b3 = document.createElement("b");
+                b3.style.width = W1 + "px";
+                b2.appendChild(b3);
+                var b4 = document.createElement("b");
+                b4.style.width = W2 + "px";
+                b3.appendChild(b4);
+                var b5 = document.createElement("b");
+                b5.style.width = W2 + "px";
+                b5.style.height = W1 + "px";
+                b4.appendChild(b5);
+            };
+            //存储楼盘样式
+            City3D.prototype.styles = ["a", "b", "c", "d", "e"];
+            //动态楼盘样式
+            City3D.prototype.setStyle = function () {
+                return this.styles[(Math.random() * 100 << 2) % 5];// js 中 << 或者 >> 移位位运算只算整数部分
+            };
+            //动态楼盘高度
+            City3D.prototype.setHeight = function () {
+                return (Math.random() * 1000 << 2) % 280 + 20;
+            };
+            //动态楼盘宽度
+            City3D.prototype.setWidth = function () {
+                return (Math.random() * 1000 << 2) % 20 + 20;
+            };
+            //new 一个对象  .build() 调用这个方法
+            new City3D().build(document.body);
+        </script>
+    </body>
+</html>

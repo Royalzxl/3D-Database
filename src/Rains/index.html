@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="ZengXiaoLong"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>                     <!--兼容处理-->
+        <title>Please enter your title</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-size: 16px;
+                color: black;
+                background: #fff;
+            }
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+            ul li {
+                list-style: none;
+            }
+            .fl {
+                float: left;
+            }
+            .fr {
+                float: right;
+            }
+            .clearFixed:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #canvas{
+                display: block;
+                background: #000;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script type="text/javascript">
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var winW = window.innerWidth, // 获取浏览器内部窗口 宽度 和 高度  不包括浏览器的border
+                winH = window.innerHeight;
+            canvas.width = winW; //画布width
+            canvas.height = winH;//画布height
+            function random(min,max) { // 随机数值 函数 计算
+                return Math.random()*(max - min)+min;
+            }
+            //空构造函数  面向对象
+            function Drop() {}
+            //往函数原型里 添加方法
+            Drop.prototype = {
+                init : function(){ //初始化 方法
+                    this.X = random(0,winW); // 随机雨滴位置
+                    this.Y = 0; //从浏览器窗口 顶部落下
+                    this.R = 0; //半径
+                    this.vY = random(2,5);//下落速度
+                    this.vR = 1;// 半径增大速度
+                    this.L = random(0.8*winH,0.9*winH);// 随机雨滴 下落的长度
+                    this.A = 1; // 透明度
+                    this.vA = 0.96; // 透明度的变化速度
+                },
+                draw: function () {  //绘图 方法
+                    if(this.Y < this.L){
+                        ctx.fillStyle = "#3ff";
+                        ctx.fillRect(this.X,this.Y,2,10); // x,y位置开始填充，宽度为2  高度为10的长方形
+                    }else{
+                        // 画圆
+                        ctx.beginPath();//开始绘图
+                        ctx.strokeStyle = "rgba(0,255,255,"+this.A+")"; // 样式
+                        ctx.arc(this.X,this.Y,this.R,0,2*Math.PI); // 圆
+                        ctx.stroke();// 画图
+                    }
+                    this.update();
+                },
+                update:function () {
+                    if (this.Y < this.L){
+                        this.Y += this.vY;
+                    }else {
+                        if(this.A > 0.03){
+                            this.R += this.vR;
+                            if(this.R > 50){
+                                this.A *= this.vA;
+                            }
+                        }else {
+                            this.init();
+                        }
+                    }
+                }
+            };
+            var draws = [];
+            for (var i = 0; i < 60; i++) {
+                setTimeout(function () {
+                    var drop = new Drop();
+                    drop.init();
+                    draws.push(drop);
+                },200*i)
+            }
+            setInterval(function () {
+                ctx.fillStyle = "rgba(0,0,0,0.07)";
+                ctx.fillRect(0,0,winW,winH);
+                for (var i = 0; i < draws.length; i++) {
+                    draws[i].draw();
+                }
+            },16)
+        </script>
+    </body>
+</html>

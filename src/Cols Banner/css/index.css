@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 16px;
+    color: black;
+    background: #fff;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+ul li {
+    list-style: none;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearFixed:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.wrap{
+    position:relative;
+    width:1000px;
+    height:390px;
+    background:#F1F1F1;
+    margin:40px auto 0 auto;
+}
+.wrap .list{
+    width: 100%;
+    height: 100%;
+}
+.item{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    display:none;
+}
+.item img{
+    display:block;
+    width:1000px;
+    height:390px;
+}
+ul.tab{
+    width:12px;
+    position:absolute;
+    top:10%;
+    right:20px;
+    background:url(../images/controbg.png) no-repeat top center;
+}
+ul.tab li{
+    width:12px;
+    height:12px;
+    margin-bottom:50px;
+    position:relative;
+}
+ul.tab .current{
+    border-radius: 50%;
+    -webkit-transform:scale(1.8);
+    transform:scale(1.8);
+}
+ul.tab a{
+    width:100%;
+    height:100%;
+    line-height:100%;
+    border-radius:50%;
+    text-indent:-70px;
+    color: #808285;
+    background-color: #808285;
+    position:absolute;
+    top:0;
+    left:0;
+    -webkit-transition:-webkit-transform 0.5s ease, background-color 0.5s ease;
+    transition:transform 0.5s ease, background-color 0.5s ease;
+}
+ul.tab .current a{
+    background: #ff4c11;
+    color: #ff4c11;
+}

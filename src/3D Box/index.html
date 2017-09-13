@@ -1,0 +1,127 @@
+<!DOCTYPE html >
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="Web.JS" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+        <title>CSS的3D制作</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:20px;color:#666;font-family:"微软雅黑";}
+			a{text-decoration:none;color:#666;}
+			ul li{list-style:none;}
+			.fl{float:left;}
+			.fr{float:right;}
+			.clearfixed:after{content:"";display:block;clear:both;}
+			#box{width:200px;height:200px;margin:400px auto;perspective:800px;}
+			#box #wrap{
+				position:relative;
+				width:200px;
+				height:200px;
+				transform-style:preserve-3d;
+				transition:3s;
+				transform:translateZ(0px);
+			}
+			#box #wrap .face{
+				position:absolute;
+				width:200px; 
+				height:200px;
+				text-align:center;
+				line-height:200px;
+				opacity:0.5;
+				box-shadow:inset 0px 0px 10px rgba(23, 21, 21, 0.92);
+			}
+			#box #wrap div:nth-child(1){
+				left:-200px;
+				transform-origin:right;
+				transform:translateZ(100px) rotateY(-90deg);
+			}
+			#box #wrap div:nth-child(2){
+				left:200px;
+				transform-origin:left;
+				transform:translateZ(100px) rotateY(90deg);
+			}
+			#box #wrap div:nth-child(3){
+				top:-200px;
+				transform-origin:bottom;
+				transition:3s;
+				transform:translateZ(100px) rotateX(90deg);
+			}
+			#box #wrap div:nth-child(4){
+				top:200px;
+				transform-origin:top;
+				transform:translateZ(100px) rotateX(-90deg);
+			}
+			#box #wrap div:nth-child(5){transform:translateZ(100px);}
+			#box #wrap div:nth-child(6){transform:translateZ(-100px) rotateY(180deg);}
+			#box:hover #wrap{transform:rotateY(180deg);}
+			#box:hover #wrap div:nth-child(3){transform:translateZ(100px) rotateX(-30deg);}
+			#box #wrap #small{
+				position:absolute;
+				transform-style:preserve-3d;
+				width:100px;
+				height:100px;
+				transform:translateZ(0px) translateY(50px) translateX(50px);
+				transition:3s;
+			}
+			#box #wrap #small p{
+				position:absolute;
+				width:100px;
+				height:100px;
+				text-align:center;
+				line-height:100px;
+				background-size:cover;
+			}
+			#box #wrap #small p:nth-child(1){
+				left:-100px;
+				background-image:url("img/1.jpg");
+				transform-origin:right;
+				transform:translateZ(50px) rotateY(-90deg);
+			}
+			#box #wrap #small p:nth-child(2){
+				left:100px;
+				background-image:url("img/2.jpg");
+				transform-origin:left;
+				transform:translateZ(50px) rotateY(90deg);
+			}
+			#box #wrap #small p:nth-child(3){
+				top:-100px;
+				background-image:url("img/3.jpg");
+				transform-origin:bottom;
+				transform:translateZ(50px) rotateX(90deg);
+			}
+			#box #wrap #small p:nth-child(4){
+				top:100px;
+				background-image:url("img/4.jpg");
+				transform-origin:top;
+				transform:translateZ(50px) rotateX(-90deg);
+			}
+			#box #wrap #small p:nth-child(5){background-image:url("img/5.jpg");transform:translateZ(50px);}
+			#box #wrap #small p:nth-child(6){background-image:url("img/6.jpg");transform:translateZ(-50px) rotateY(180deg);}
+			#box:hover #wrap #small{transform:translateZ(0px) translateY(-200px) translateX(50px);}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="wrap">
+				<div class="face">左</div>
+				<div class="face">右</div>
+				<div class="face">上</div>
+				<div class="face">下</div>
+				<div class="face">前</div>
+				<div class="face">后</div>
+				<div id="small">
+					<p>1</p>
+					<p>2</p>
+					<p>3</p>
+					<p>4</p>
+					<p>5</p>
+					<p>6</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

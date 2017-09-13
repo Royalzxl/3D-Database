@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="ZengXiaoLong"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>                     <!--兼容处理-->
+        <title>Please enter your title</title>
+        <link rel="stylesheet" href="css/index.css"/>
+    </head>
+    <body>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <div class="banner">
+            <div class="b_box">
+                <!--b_info start-->
+                <div class="b_info">
+                    <p>
+                        <span>姓名：</span>
+                        <input type="text" class="b_txt" id="name" />
+                    </p>
+                    <p>
+                        <span>公司：</span>
+                        <input type="text" class="b_txt" id="company"/>
+                    </p>
+                    <p>
+                        <span>职务：</span>
+                        <input type="text" class="b_txt" id="title"/>
+                    </p>
+                    <p>
+                        <span>地址：</span>
+                        <input type="text" class="b_txt" id="address"/>
+                    </p>
+                    <p>
+                        <span>手机：</span>
+                        <input type="text" class="b_txt" id="mobile"/>
+                    </p>
+                    <p>
+                        <span>邮箱：</span>
+                        <input type="text" class="b_txt" id="email"/>
+                    </p>
+                    <p>
+                        <span>网址：</span>
+                        <input type="text" class="b_txt" id="web"/>
+                    </p>
+                    <p>
+                        <span>备注：</span>
+                        <input type="text" class="b_txt" id="desc"/>
+                    </p>
+
+                    <p class="b_login">
+                        <a href="javascript:void (0);" id="b_btn">生成通讯录二维码</a>
+                    </p>
+
+                </div>
+                <!--end b_info-->
+
+                <!--b_qrcode start-->
+                <div class="b_qrcode" id="qrcode">
+                    <p>左侧输入内容<br/>
+                        点击生成二维码</p>
+                </div>
+                <!--end b_qrcode-->
+
+            </div>
+        </div>
+        <script src="js/qrcode.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>

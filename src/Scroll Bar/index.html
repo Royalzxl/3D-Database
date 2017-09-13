@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" onselectstart = "return false">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">                     <!--兼容处理-->
+        <title>Please enter your title</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-size: 16px;
+                color: #000;
+                min-width: 1100px;
+            }
+            a {
+                text-decoration: none;
+                color: #666;
+            }
+            ul li {
+                list-style: none;
+            }
+            #box{
+                overflow: hidden;
+                position: relative;
+                margin: 50px auto;
+                width: 710px;
+                height: 510px;
+                background: #efff97;
+                padding: 15px;
+                /*user-select: none; */
+            }
+            #box #content{          /*不给宽高 由内容撑开*/
+                position: absolute;
+                left: 0;
+                top: 0;
+                padding: 15px;
+                transition: top .2s;
+                border: 1px solid rgba(0, 0, 0, 1);
+            }
+            #box #content p{
+                margin: 10px 0;
+            }
+            #box #content .english{
+                font-size: 20px;
+                font-weight: bold;
+            }
+            #box #scroll{
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 15px;
+                height: 100%;
+                background: -webkit-linear-gradient(top, #1477d8, #ff0771);
+                border-radius: 8px;
+            }
+            #box #scroll .bar{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                border-radius: 8px;
+                transition: top .2s;
+                background: rgba(0,0,0,.5);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <div id="content">
+                <h2>阿甘正传</h2><br/>
+                <p class="english">1、Life was like a box of chocolates, you never know what you're going to get.</p>
+                <p>生命就像一盒巧克力，结果往往出人意料。</p>
+                <p class="english">2、Stupid is as stupid does.</p>
+                <p>蠢人做蠢事，也可理解为傻人有傻福。</p>
+                <p class="english">3、Miracles happen every day.</p>
+                <p>奇迹每天都在发生。</p>
+                <p class="english">4、it made me look like a duck in water.</p>
+                <p>它让我如鱼得水。</p>
+                <p class="english">5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+                <p>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</p>
+                <p class="english">6、Death is just a part of life, something we're all destined to do.</p>
+                <p>死亡是生命的一部分，是我们注定要做的一件事。</p>
+                <p class="english">7、You have got to put the past behind you before you can move on.</p>
+                <p>放下包袱，继续前进。</p>
+                <p class="english">8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+                <p>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</p>
+                <p class="english">9、If there is anything you need, I will not be far away.</p>
+                <p>只要你需要，我就在这里。</p>
+                <p class="english">10、I am a man of my word.</p>
+                <p>我是信守承诺的人。</p>
+                <p class="english">11、There is one small step for a man,a giant leap for mankind.</p>
+                <p>某人的一小步就是人类的一大步。</p>
+                <p class="english">1、Life was like a box of chocolates, you never know what you're going to get.</p>
+                <p>生命就像一盒巧克力，结果往往出人意料。</p>
+                <p class="english">2、Stupid is as stupid does.</p>
+                <p>蠢人做蠢事，也可理解为傻人有傻福。</p>
+                <p class="english">3、Miracles happen every day.</p>
+                <p>奇迹每天都在发生。</p>
+                <p class="english">4、it made me look like a duck in water.</p>
+                <p>它让我如鱼得水。</p>
+                <p class="english">5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+                <p>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</p>
+                <p class="english">6、Death is just a part of life, something we're all destined to do.</p>
+                <p>死亡是生命的一部分，是我们注定要做的一件事。</p>
+                <p class="english">7、You have got to put the past behind you before you can move on.</p>
+                <p>放下包袱，继续前进。</p>
+                <p class="english">8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+                <p>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</p>
+                <p class="english">9、If there is anything you need, I will not be far away.</p>
+                <p>只要你需要，我就在这里。</p>
+                <p class="english">10、I am a man of my word.</p>
+                <p>我是信守承诺的人。</p>
+                <p class="english">11、There is one small step for a man,a giant leap for mankind.</p>
+                <p>某人的一小步就是人类的一大步。</p>
+            </div>
+            <div id="scroll">
+                <div class="bar"></div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            //获取相应的元素
+            var oScroll = document.getElementById("scroll"),
+                oContent = document.getElementById("content"),
+                oBox = document.getElementById("box"),
+                oBar = oScroll.children[0];
+
+            //先设定oBar的高度
+            var barH = oBox.clientHeight*oBox.clientHeight / oBox.scrollHeight;
+            oBar.style.height = barH + 'px';
+
+            //考虑到oBar的top有限制，获取oBar的最大高度
+            var maxBTop = oScroll.clientHeight - barH;
+            //滑动，oText要有oBar对应，获取oText的最大高度
+            var maxCTop = oBox.scrollHeight - oBox.clientHeight;
+            //让oScroll 隐藏
+            oScroll.style.display = "none";
+
+            //注册鼠标事件
+            oBar.onmousedown = function (e) {        //oBar注册鼠标按下事件
+                e = e || window.event;          //事件兼容
+                //获取鼠标按下时鼠标的位置 由于只是上下移动 只需获取Y值即可
+                var sY = e.clientY;
+                //获取oBar 初始top值
+                var sT = this.offsetTop;
+                document.onmousemove = function (e) {        //document注册鼠标移动事件
+                    e = e || window.event;
+                    setTop( sT + e.clientY - sY);
+                }
+            };
+            document.onmouseup = function () {          //document注册鼠标抬起事件 任何 地方鼠标都可能抬起
+                this.onmousemove = null;  //清除移动事件
+            };
+
+            //scroll的点击事件
+            //获取box距离可视区顶部的距离
+            oBar.onclick = function (e) {
+                e = e || window.event;
+                e.cancelBubble = true;
+            };
+            oScroll.onclick = function (e) {
+                e = e || window.event;
+                // 鼠标距离可视区的top + 滚动高 - oBox距离文档的top - bar的高度一半
+                // 鼠标距离可视区的top - bar的高度一半 - oBox距离文档的top + 滚动高
+                var top = e.clientY - barH/2 - offset(oBox).top + (document.documentElement.scrollTop||document.body.scrollTop);
+                setTop(top);
+            };
+
+            //oBox添加滚轮事件
+            mousewheel(oBox,function (e,d) {
+                    var top = oBar.offsetTop;
+                    d<0?top += 20:top -= 20;
+                    setTop(top);
+                    return false;
+                }
+            );
+
+            //显示scroll
+            (function () {
+                //定义变量 用来scroll的显示隐藏
+                var flag = true , flag1 = true;
+                oBox.onmouseenter = function () {
+                    flag1 = false;
+                    oScroll.style.display = "block";
+                };
+                oBox.onmouseleave = function () {
+                    flag1 = true;
+                    flag && (oScroll.style.display = "none");
+                };
+                oScroll.onmousedown = function () {
+                    flag = false;
+                };
+                document.addEventListener("mouseup" , function () {
+                    flag = true;
+                    flag1 && (oScroll.style.display = "none");
+                });
+            })();
+
+            //设定oBar 和 oContent 的滑动高度
+            function setTop(top) {
+                //限定top的取值范围
+                top = Math.max(top , 0);
+                top = Math.min(top , maxBTop);
+                oBar.style.top = top + "px";
+                //求出content的top
+                var cTop = top*maxCTop / maxBTop;
+                oContent.style.top = -cTop + 'px';
+            }
+
+            //滚轮事件函数封装
+            function mousewheel(obj , Fn) {
+                function eFn(e) {
+                    e = e || window.event;
+                    if ( Fn.call(this,e,e.wheelDelta/120 || -e.detail/3) === false ){
+                        e.preventDefault && e.preventDefault();
+                        e.returnValue = false;
+                    }
+                }
+                document.onmousewheel!==undefined?obj.onmousewheel=eFn:obj.addEventListener('DOMMouseScroll',eFn,false);
+            }
+
+            //获取元素到文档的距离
+            function offset(obj){
+                var json = {
+                    left : 0,
+                    top : 0
+                };
+                while ( obj !== document.body ){
+                    json.left += obj.offsetLeft;
+                    json.top += obj.offsetTop;
+                    obj = obj.offsetParent;
+                }
+                return json;
+            }
+        </script>
+    </body>
+</html>
