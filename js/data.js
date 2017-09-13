@@ -106,14 +106,6 @@ var WsbData = [
     {
         type: "Js",
         author: "Web.Js",
-        title: "案例：淘宝商品放大预览特效",
-        dec: "JQuery 框架的应用",
-        time: "2017-07-29",
-        src: "Magnifier"
-    },
-    {
-        type: "Js",
-        author: "Web.Js",
         title: "案例：梦幻弹动登陆",
         dec: "JQuery animate API 的应用",
         time: "2017-02-23",
