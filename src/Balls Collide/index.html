@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">                     <!--兼容处理-->
+        <title>Please enter your title</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-size: 16px;
+                color: #666;
+                min-width: 1100px;
+                background: #e4eefc;
+            }
+            a {
+                text-decoration: none;
+                color: #666;
+            }
+            ul li {
+                list-style: none;
+            }
+            .balls{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            // requestAnimationFrame() 与 cancelAnimationFrame() 的兼容
+            window.requestAnimationFrame = window.requestAnimationFrame || function (a) {return setTimeout(a,1000/60)};
+            window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+
+            //设置oBall的运动区域(背景场)
+            var MaxW,MaxH;
+            //浏览器的窗口在改变大小的时候触发
+            window.onresize = Max();
+            //函数限制背景场的最大边界
+            function Max(){
+                MaxW = document.documentElement.clientWidth - 100;
+                MaxH = document.documentElement.clientHeight - 100;
+                return Max;
+            }
+
+            //先生成多个小球
+            for (var i = 0; i < 10; i++) {  //10 个
+                var oBall = document.createElement("div"); //生成div
+                oBall.className = "balls";
+                oBall.Vx = (Math.random()*10-5)+2*i;
+                oBall.Vy = (Math.random()*10-5)+2*i;
+                oBall.style.background = "radial-gradient(#ffffff,"+rColor()+")";
+                document.body.appendChild(oBall);//在 body 中添加 oBall
+                //运动模块 (搞清楚 要改变的是什么属性  --->  oBall 的 left 和 top)
+                (function (oBall) {
+                    ~function play() {
+                        var left = oBall.offsetLeft + oBall.Vx,
+                            top = oBall.offsetTop + oBall.Vy;
+                        if ( left >= MaxW ){
+                            left = MaxW;
+                            oBall.Vx = -oBall.Vx;
+                        }
+                        if (left <= 0){
+                            left = 0;
+                            oBall.Vx = -oBall.Vx;
+                        }
+                        if ( top >= MaxH ){
+                            top = MaxH;
+                            oBall.Vy = -oBall.Vy;
+                        }
+                        if ( top <= 0 ){
+                            top = 0;
+                            oBall.Vy = -oBall.Vy;
+                        }
+                        if ( left === MaxW || left === 0 || top === MaxH || top === 0 ){
+                            oBall.style.background = "radial-gradient(#ffffff,"+rColor()+")";
+                        }
+                        oBall.style.left = left + 'px';
+                        oBall.style.top = top + 'px';
+                        requestAnimationFrame(play);
+                    }();
+                })(oBall);
+            }
+
+            //生成随机颜色
+            function rColor(){
+                var str = "#";
+                for (var j = 0; j < 6; j++) {
+                    str += Math.floor(Math.random()*16).toString(16);
+                }
+                return str;
+            }
+        </script>
+    </body>
+</html>

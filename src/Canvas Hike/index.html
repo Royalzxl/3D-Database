@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="ZengXiaoLong"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>                     <!--兼容处理-->
+        <title>Please enter your title</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-size: 16px;
+                color: black;
+                background: #fff;
+            }
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+            ul li {
+                list-style: none;
+            }
+            .fl {
+                float: left;
+            }
+            .fr {
+                float: right;
+            }
+            .clearFixed:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #canvas{
+                background: black;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script type="text/javascript">
+            var Canvas = document.getElementById("canvas");
+            var Ctx = Canvas.getContext("2d");
+            Canvas.width = window.innerWidth;
+            Canvas.height = window.innerHeight;
+            var Num = 16,arr = []; //Num 表字体大小
+            var Cols = Canvas.width / Num; // 列数
+            for (var i = 0; i < Cols; i++) {
+                 arr[i] = - Math.random()*100<<2; // 初始值
+            }
+            (function Draw() {
+                Ctx.fillStyle = "rgba(0,0,0,.1)";
+                Ctx.fillRect(0,0,Canvas.width,Canvas.height);
+                Ctx.fillStyle = "#158027";
+                Ctx.font = "bold"+ Num +"px Times New Roman";
+                for (var i = 0; i < Cols; i++) {
+                    var S = Math.floor(Math.random()*10), //0-9 向下取整
+                        TextX = i*Num,
+                        TextY = arr[i];
+                    Ctx.fillText(S,TextX,TextY);// fillText(text,x,y,maxWidth) --> 绘制文本 ：文本，x坐标，y坐标，文本允许的最大宽度(可选)
+                    arr[i] += Num;
+                    if(arr[i] > Canvas.height && Math.random() > 0.9){
+                        arr[i] = 0;
+                    }
+                }
+                window.requestAnimationFrame(Draw);
+            })();
+        </script>
+    </body>
+</html>

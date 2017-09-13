@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="Author" content="ZengXiaoLong"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>       <!--页面放大代码-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>                     <!--兼容处理-->
+        <title>Please enter your title</title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                overflow: hidden;
+                font-size: 16px;
+                color: black;
+                background: #fff;
+            }
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+            ul li {
+                list-style: none;
+            }
+            .fl {
+                float: left;
+            }
+            .fr {
+                float: right;
+            }
+            .clearFixed:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            #bg-wrap {
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #bg-wrap div {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            #bg-wrap div:nth-of-type(1) {
+                opacity: 1;
+            }
+            #login {
+                width: 272px;
+                height: 300px;
+                position: absolute;
+                left: 50%;
+                top: 200px;
+                margin-left: -136px;
+            }
+            #login h3 {
+                text-align: center;
+                font-size: 32px;
+                color: #ffffff;
+                text-shadow: 0 0 8px #000000;
+                font-family: Andalus;
+                width: 270px;
+                text-align: center;
+            }
+            #login input {
+                width: 270px;
+                height: 40px;
+                border: 2px solid rgba(0, 0, 0, .15);
+                border-radius: 6px;
+                background: rgba(0, 0, 0, 0.15);
+                color: #ffffff;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, .1) inset;
+                text-indent: 20px;
+                font-size: 14px;
+                outline: none;
+            }
+            #login input:focus {
+                outline: none;
+                box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1) inset, 0 2px 17px rgba(255, 255, 255, .2);
+            }
+            #login input[type='button'] {
+                width: 272px;
+                height: 44px;
+                text-align: center;
+                text-indent: 0;
+                cursor:pointer;
+                background: #ef4300;
+                box-shadow: 0 15px 30px 0 rgba(255, 255, 255, .25) inset, 0 2px 7px 0 rgba(0, 0, 0, .2);
+                border: 0px;
+                border-radius: 6px;
+                color: #ffffff;
+                font-size: 14px;
+            }
+            input::-webkit-input-placeholder { color: #fff; }
+            #login .move { position: absolute; top: -270px }
+        </style>
+    </head>
+    <body>
+        <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <div id="bg-wrap">
+            <div><img src="images/1.jpg" alt="one" width="100%" height="100%"></div>
+            <div><img src="images/2.jpg" alt="two" width="100%" height="100%"></div>
+            <div><img src="images/3.jpg" alt="three" width="100%" height="100%"></div>
+        </div>
+        <div id="login">
+            <h3 class="move">User Login</h3>
+            <form action="http://web.tanzhouedu.com" method="post" target="_blank">
+                <input type="text" placeholder="userName" class="move" name="username">
+                <input type="password" placeholder="passWord" class="move" name="password">
+                <input type="button" value="Sign in" class="move">
+            </form>
+        </div>
+        <script>
+            //背景图轮播控制
+            (function () {
+                var $bgImg = $('#bg-wrap div');
+                var index = 0;
+                setInterval(auto, 3000);
+                function auto() {
+                    index++;
+                    index %= $bgImg.length;
+                    $bgImg.eq(index).stop().animate({'opacity': 1}, 1000).siblings().stop().animate({'opacity': 0}, 1000)
+                }
+            })();
+            //登录框
+            (function () {
+                var oMove=document.querySelectorAll('#login .move');
+                var timer = null;
+                var speed = 1;
+                var timeOuter=null;
+                var index=oMove.length-1;
+                move(index);
+                function move(index) {
+                    clearTimeout(timeOuter);
+                    var end=(index*65);
+                    if(index<0){
+                        clearInterval(timer);
+                        clearTimeout(timeOuter);
+                        return;
+                    }
+                    timer=setInterval(function () {
+                        speed+=3;
+                        var T=getStyle(oMove[index],'top')+speed;
+                        if(T>=end){
+                            T=end;
+                            speed*=-1;
+                            speed*=0.3;
+                        }
+                        oMove[index].style.top=T+'px';
+                    },20);
+                    timeOuter=setTimeout(function () {
+                        clearInterval(timer);
+                        index--;
+                        move(index);
+                    },800)
+                }
+                function getStyle(ele, curr) {
+                    return ele.currentStyle ? parseInt(ele.currentStyle[curr]) : parseInt(getComputedStyle(ele, false)[curr])
+                }
+            })()
+        </script>
+    </body>
+</html>

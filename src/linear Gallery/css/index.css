@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 16px;
+    background: black;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+ul li {
+    list-style: none;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.clearFixed:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#box{
+    width: 100%;
+    height: 400px;
+    margin: 120px auto;
+    padding: 20px 0; /** padding 没有auto*/
+}
+#box ul{
+    position: relative;
+    width: 1000%;
+    height: 100%;
+    left: 50%;
+    margin-left: -300px;
+}
+#box ul li{
+    float: left;
+    overflow: hidden;
+    width:260px;
+    height:150px;
+    box-shadow: 0 0 4px #fff;
+    cursor: pointer;
+    margin-top:135px;
+    margin-right:10px;
+    opacity: .3;
+}
+#box ul li.on{
+    width:600px;
+    height:400px;
+    margin-top:0;
+}
+#box ul li img{
+    width:100%;
+    height:100%;
+}

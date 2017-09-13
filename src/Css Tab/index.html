@@ -1,0 +1,99 @@
+<!DOCTYPE html >
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+		<meta name="generator" content="editplus" />
+		<meta name="author" content="Web.JS" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+        <title>CSS模拟选项卡</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			body{font-size:12px;color:#666;font-family:"微软雅黑";background:#c2c2c2;}
+			a{text-decoration:none;color:#666;}
+			ul li{list-style:none;}
+			.fl{float:left;}
+			.fr{float:right;}
+			.clearfixed:after{content:"";display:block;clear:both;}
+			.content{width:400px;margin:50px auto;}
+			.content h1{text-align:center;font-size:35px;color:#fff;margin-bottom:30px;}
+			.content .tab{width:100%;text-align:left;position:relative;}
+			.content .tab li{float:left;display:block;} 
+			.content .tab li input{display:none;}
+			.content .tab li label{
+				display:block;
+				font-size:24px;
+				font-weight:bold;
+				color:#fff;
+				text-align:center;
+				padding:14px 21px;
+				background:#1b8415;
+				border-radius:5px;
+				cursor:pointer;
+				position:relative;
+				top:5px;
+				transition:all 0.2s ease-in-out;
+				}
+			.content .tab li label:hover{background:#00e300;}
+			.content .tab li:first-child{margin-left:65px;}
+			.content .tab [id^="tab"]:checked + label{/*被用户选中的紧跟随其后的第一个元素 同级兄弟的第一个*/
+				top:0px;
+				padding-top:20px;
+				background:#090;
+				text-decoration:underline;
+			}
+			.content .tab .tab_con{
+				z-index:1;
+				width:90%;
+				background:#1b8415;
+				color:#fff;
+				font-size:18px;
+				line-height:40px;
+				padding:30px;
+				position:absolute;
+				top:60px;
+				left:0px;
+				display:none;
+			}
+			.content .tab [id^="tab"]:checked~[id^="tab_con"]{display:block;}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<h1>纯CSS制作的TAB选项卡</h1>
+			<ul class="tab clearfixed">
+				<li>
+					<input name="tabs" id="tab1" type="radio" checked />
+					<label for="tab1">头条</label>
+					<div id="tab_con1" class="tab_con">
+						<p>[热议]GalaxyS8成最值期待新机</p>
+						<p>[实用]魅族5s30分钟充电56%</p>
+						<p>[划算]爆款9.9元秒杀还包邮</p>
+						<p>[时尚]摩拜单车真的不如ofo？</p>
+					</div>
+				</li>
+				<li>
+					<input name="tabs" id="tab2" type="radio" />
+					<label for="tab2">公告</label>
+					<div id="tab_con2" class="tab_con">
+						<p>[促销]笔记本每1000减100</p>
+						<p>[促销]超市粮油节 满99减30</p>
+						<p>[促销]开学季配件爆款9.9元抢</p>
+						<p>[促销]开学报到 12期0息特惠专场</p>
+					</div>
+				</li>
+				<li>
+					<input name="tabs" id="tab3" type="radio" />
+					<label for="tab3">足球</label>
+					<div id="tab_con3" class="tab_con">
+						<p>[足球]苏宁足球俱乐部旗舰店</p>
+						<p>[青训]少儿足球春季班报名</p>
+						<p>[促销]开学季50元卷限量抢</p>
+						<p>[促销]运动大牌3折起</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+
